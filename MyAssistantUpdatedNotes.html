@@ -22,8 +22,35 @@
   <title>My Assistant</title>
 
   <style>
+    :root {
+      --bg-color: #f7f7f7;
+      --text-color: #000;
+      --nav-bg: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);
+      --nav-link-color: #eee;
+      --card-bg: #f6f6f6;
+      --card-border: #ddd;
+      --link-color: #0062b2;
+      --title-bg: #0062b2;
+      --title-text: #fff;
+    }
+    .dark-theme {
+      --bg-color: #121212;
+      --text-color: #eee;
+      --nav-bg: linear-gradient(90deg, #000, #333);
+      --nav-link-color: #ccc;
+      --card-bg: #1e1e1e;
+      --card-border: #333;
+      --link-color: #4da3ff;
+      --title-bg: #333;
+      --title-text: #eee;
+    }
     * {
       font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
     }
 
     ::-webkit-scrollbar-track {
@@ -54,8 +81,8 @@
     }
 
     th {
-      background-color: #eee;
-      color: #333;
+      background-color: var(--card-bg);
+      color: var(--text-color);
     }
 
     ul {
@@ -63,7 +90,7 @@
     }
 
     a {
-      color: #0062b2;
+      color: var(--link-color);
       display: inline-block;
       transition: .3s;
       margin-right: 5px;
@@ -107,23 +134,26 @@
     }
 
     .card-header .btn {
-      color: black;
+      color: var(--text-color);
       font-weight: 900;
     }
 
     .card-body {
-      background: #f6f6f6;
+      background: var(--card-bg);
       border-radius: 7px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--card-border);
     }
 
     .navbar {
-      background: rgb(0, 72, 131);
-      background: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);
+      background: var(--nav-bg);
     }
 
     nav .navbar-nav .nav-item .nav-link {
-      color: #eee !important;
+      color: var(--nav-link-color) !important;
+    }
+
+    nav .navbar-nav .nav-item .custom-control-label {
+      color: var(--nav-link-color);
     }
 
     nav .navbar-nav li a:hover {}
@@ -144,15 +174,15 @@
       width: 95%;
       font-size: 16px;
       padding: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--card-border);
       margin-bottom: 12px;
       max-width: 300px;
       border-radius: 5px;
     }
 
     .title {
-      color: #fff;
-      background-color: #0062b2;
+      color: var(--title-text);
+      background-color: var(--title-bg);
       padding: 10px;
     }
 
@@ -160,8 +190,8 @@
       margin-bottom: 20px;
       padding: 10px;
       border-radius: 10px;
-      box-shadow: 3px 3px 10px #ddd;
-      background-color: #fff;
+      box-shadow: 3px 3px 10px var(--card-border);
+      background-color: var(--card-bg);
       page-break-inside: avoid
     }
 
@@ -169,7 +199,7 @@
       padding: 10px;
       margin: 0px -10px 10px 10px;
       border-radius: 7px 7px 0 0;
-      color: #333;
+      color: var(--text-color);
     }
 
     .clearFix::after {
@@ -1326,7 +1356,7 @@
 
 </head>
 
-<body style=" background-color: #f7f7f7; ">
+<body>
 
   
   
@@ -1393,6 +1423,12 @@
             <a class="dropdown-item" target="_blank" href="https://whiteboard.spctrm.net/">Whiteboard</a>
             <a class="dropdown-item" target="_blank" href="https://csoc.corp.chartercom.com/issuesubmitter/KnownIssues.aspx">Comm Desk Issue Submitter</a>
 
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="custom-control custom-switch text-light">
+            <input type="checkbox" class="custom-control-input" id="theme-toggle">
+            <label class="custom-control-label" for="theme-toggle">Dark Mode</label>
           </div>
         </li>
       </ul>
@@ -6284,6 +6320,26 @@
         initializedFlag.id = 'tech-request-form-initialized';
         initializedFlag.style.display = 'none';
         document.body.appendChild(initializedFlag);
+      })();
+    </script>
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark-theme');
+          toggle.checked = true;
+        }
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            document.documentElement.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+          }
+        });
       })();
     </script>
   </body>
