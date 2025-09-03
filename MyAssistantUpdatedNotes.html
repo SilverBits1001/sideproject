@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html lang="en" data-theme="light">
+<html>
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -16,59 +16,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" xintegrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
   <title>My Assistant</title>
 
   <style>
-    :root {
-      --bg-color: #f3f4f6;
-      --card-bg: #ffffff;
-      --card-border: #e5e7eb;
-      --text-color: #1f2937;
-      --text-color-secondary: #6b7280;
-      --border-color: #e5e7eb;
-      --primary-blue: #2563eb;
-      --primary-blue-hover: #1d4ed8;
-      --icon-bg-color: #e0e7ff;
-      --icon-bg-hover: #c7d2fe;
-      --table-header-bg: #f9fafb;
-      --table-row-hover: #f3f4f6;
-      --nav-bg: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);
-      --nav-link-color: #eee;
-      --link-color: #0062b2;
-      --title-bg: #0062b2;
-      --title-text: #fff;
-    }
-    [data-theme="dark"] {
-      --bg-color: #111827;
-      --card-bg: #1f2937;
-      --card-border: #374151;
-      --text-color: #f9fafb;
-      --text-color-secondary: #9ca3af;
-      --border-color: #374151;
-      --primary-blue: #3b82f6;
-      --primary-blue-hover: #2563eb;
-      --icon-bg-color: #374151;
-      --icon-bg-hover: #4b5563;
-      --table-header-bg: #1f2937;
-      --table-row-hover: #374151;
-      --nav-bg: linear-gradient(90deg, #000, #333);
-      --nav-link-color: #ccc;
-      --link-color: #4da3ff;
-      --title-bg: #333;
-      --title-text: #eee;
-    }
     * {
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: 'Roboto', sans-serif;
     }
 
     ::-webkit-scrollbar-track {
@@ -99,8 +54,8 @@
     }
 
     th {
-      background-color: var(--card-bg);
-      color: var(--text-color);
+      background-color: #eee;
+      color: #333;
     }
 
     ul {
@@ -108,7 +63,7 @@
     }
 
     a {
-      color: var(--link-color);
+      color: #0062b2;
       display: inline-block;
       transition: .3s;
       margin-right: 5px;
@@ -152,26 +107,23 @@
     }
 
     .card-header .btn {
-      color: var(--text-color);
+      color: black;
       font-weight: 900;
     }
 
     .card-body {
-      background: var(--card-bg);
+      background: #f6f6f6;
       border-radius: 7px;
-      border: 1px solid var(--card-border);
+      border: 1px solid #ddd;
     }
 
     .navbar {
-      background: var(--nav-bg);
+      background: rgb(0, 72, 131);
+      background: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);
     }
 
     nav .navbar-nav .nav-item .nav-link {
-      color: var(--nav-link-color) !important;
-    }
-
-    nav .navbar-nav .nav-item .custom-control-label {
-      color: var(--nav-link-color);
+      color: #eee !important;
     }
 
     nav .navbar-nav li a:hover {}
@@ -192,15 +144,15 @@
       width: 95%;
       font-size: 16px;
       padding: 12px;
-      border: 1px solid var(--card-border);
+      border: 1px solid #ddd;
       margin-bottom: 12px;
       max-width: 300px;
       border-radius: 5px;
     }
 
     .title {
-      color: var(--title-text);
-      background-color: var(--title-bg);
+      color: #fff;
+      background-color: #0062b2;
       padding: 10px;
     }
 
@@ -208,8 +160,8 @@
       margin-bottom: 20px;
       padding: 10px;
       border-radius: 10px;
-      box-shadow: 3px 3px 10px var(--card-border);
-      background-color: var(--card-bg);
+      box-shadow: 3px 3px 10px #ddd;
+      background-color: #fff;
       page-break-inside: avoid
     }
 
@@ -217,7 +169,7 @@
       padding: 10px;
       margin: 0px -10px 10px 10px;
       border-radius: 7px 7px 0 0;
-      color: var(--text-color);
+      color: #333;
     }
 
     .clearFix::after {
@@ -834,22 +786,6 @@
       min-height: 75px;
       resize: vertical;
     }
-
-    #theme-toggle {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background-color: var(--card-bg);
-      padding: 0.5rem;
-      border-radius: 9999px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      z-index: 50;
-    }
   </style>
 
   <script>
@@ -1390,7 +1326,7 @@
 
 </head>
 
-<body>
+<body style=" background-color: #f7f7f7; ">
 
   
   
@@ -6170,7 +6106,6 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" id="tech-copy-button" class="btn btn-primary">Copy to Clipboard</button>
-            <button type="button" id="tech-send-button" class="btn btn-primary">Send</button>
           </div>
         </div>
       </div>
@@ -6235,7 +6170,6 @@
         const techDeskMoveReasonDetails = document.getElementById('tech-desk-move-reason-details');
         const techDeskNumberInput = document.getElementById('tech-desk-number');
         const techCopyButton = document.getElementById('tech-copy-button');
-        const techSendButton = document.getElementById('tech-send-button');
 
         function formatTechTimeInput(event) {
           let input = event.target;
@@ -6256,27 +6190,6 @@
           if (!document.querySelector(`input[name="${groupName}"]:checked`)) {
             checkbox.checked = true;
           }
-        }
-
-        const getFormattedTime = (timeInput, amPmGroupName) => {
-          const time = timeInput.value;
-          const amPmEl = document.querySelector(`input[name="${amPmGroupName}"]:checked`);
-          const amPm = amPmEl ? amPmEl.value : 'AM';
-          return `${time} ${amPm}`;
-        };
-
-        function buildTechSegmentText() {
-          let reasonValue = techReasonSelect.value;
-          if (reasonValue.startsWith('IT8')) {
-            reasonValue = `IT8 OTHER: ${techOtherReasonDetails.value}`;
-          } else if (reasonValue.startsWith('IT9')) {
-            reasonValue = `IT9 Desk Move: ${techDeskMoveReasonDetails.value}`;
-          }
-
-          const startTime = getFormattedTime(techStartTimeInput, 'techStartTimeAmPm');
-          const endTime = getFormattedTime(techEndTimeInput, 'techEndTimeAmPm');
-
-          return `Name: ${techNameInput.value}\nPSID: ${techPsidInput.value}\nDate: ${techDateInput.value}\nStart Time: ${startTime}\nEnd Time: ${endTime}\nRequest: Tech Segment\nReason: ${reasonValue}\nDesk Number: ${techDeskNumberInput.value}`;
         }
 
         techStartTimeInput.addEventListener('input', formatTechTimeInput);
@@ -6316,7 +6229,25 @@
         techCopyButton.addEventListener('click', () => {
           const form = document.getElementById('tech-request-form');
           if (form.checkValidity()) {
-            const formattedText = buildTechSegmentText();
+            let reasonValue = techReasonSelect.value;
+            if (reasonValue.startsWith('IT8')) {
+              reasonValue = `IT8 OTHER: ${techOtherReasonDetails.value}`;
+            } else if (reasonValue.startsWith('IT9')) {
+              reasonValue = `IT9 Desk Move: ${techDeskMoveReasonDetails.value}`;
+            }
+
+            const getFormattedTime = (timeInput, amPmGroupName) => {
+              const time = timeInput.value;
+              const amPmEl = document.querySelector(`input[name="${amPmGroupName}"]:checked`);
+              const amPm = amPmEl ? amPmEl.value : 'AM';
+              return `${time} ${amPm}`;
+            };
+
+            const startTime = getFormattedTime(techStartTimeInput, 'techStartTimeAmPm');
+            const endTime = getFormattedTime(techEndTimeInput, 'techEndTimeAmPm');
+
+            const formattedText = `Name: ${techNameInput.value}\nPSID: ${techPsidInput.value}\nDate: ${techDateInput.value}\nStart Time: ${startTime}\nEnd Time: ${endTime}\nRequest: Tech Segment\nReason: ${reasonValue}\nDesk Number: ${techDeskNumberInput.value}`;
+
             navigator.clipboard.writeText(formattedText).then(() => {
               if (typeof showSnackbar === 'function') {
                 showSnackbar('Copied to Clipboard!');
@@ -6331,58 +6262,10 @@
           }
         });
 
-        techSendButton.addEventListener('click', () => {
-          const form = document.getElementById('tech-request-form');
-          if (form.checkValidity()) {
-            const formattedText = buildTechSegmentText();
-            const subject = encodeURIComponent(`${techNameInput.value} ${techPsidInput.value} Tech Segment`);
-            const body = encodeURIComponent(formattedText);
-            window.location.href = `mailto:DL-CS-CA-SanDiego-BrianRichardson@charter.com?subject=${subject}&body=${body}`;
-            $('#techSegmentModal').modal('hide');
-          } else {
-            form.reportValidity();
-          }
-        });
-
         const initializedFlag = document.createElement('div');
         initializedFlag.id = 'tech-request-form-initialized';
         initializedFlag.style.display = 'none';
         document.body.appendChild(initializedFlag);
-      })();
-    </script>
-    <div id="theme-toggle">
-      <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #fbbf24;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #60a5fa; display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    </div>
-    <script>
-      (function() {
-        const themeToggle = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const htmlEl = document.documentElement;
-
-        function setTheme(theme) {
-          htmlEl.setAttribute('data-theme', theme);
-          localStorage.setItem('theme', theme);
-          if (theme === 'dark') {
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-          } else {
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
-          }
-        }
-
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-
-        if (themeToggle) {
-          themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlEl.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-          });
-        }
       })();
     </script>
   </body>
