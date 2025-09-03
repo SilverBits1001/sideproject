@@ -16,41 +16,59 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" xintegrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
   <title>My Assistant</title>
 
   <style>
     :root {
-      --bg-color: #f7f7f7;
-      --text-color: #000;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --text-color: #1f2937;
+      --text-color-secondary: #6b7280;
+      --border-color: #e5e7eb;
+      --primary-blue: #2563eb;
+      --primary-blue-hover: #1d4ed8;
+      --icon-bg-color: #e0e7ff;
+      --icon-bg-hover: #c7d2fe;
+      --table-header-bg: #f9fafb;
+      --table-row-hover: #f3f4f6;
       --nav-bg: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);
       --nav-link-color: #eee;
-      --card-bg: #f6f6f6;
-      --card-border: #ddd;
       --link-color: #0062b2;
       --title-bg: #0062b2;
       --title-text: #fff;
     }
     [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #eee;
+      --bg-color: #111827;
+      --card-bg: #1f2937;
+      --card-border: #374151;
+      --text-color: #f9fafb;
+      --text-color-secondary: #9ca3af;
+      --border-color: #374151;
+      --primary-blue: #3b82f6;
+      --primary-blue-hover: #2563eb;
+      --icon-bg-color: #374151;
+      --icon-bg-hover: #4b5563;
+      --table-header-bg: #1f2937;
+      --table-row-hover: #374151;
       --nav-bg: linear-gradient(90deg, #000, #333);
       --nav-link-color: #ccc;
-      --card-bg: #1e1e1e;
-      --card-border: #333;
       --link-color: #4da3ff;
       --title-bg: #333;
       --title-text: #eee;
     }
     * {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     ::-webkit-scrollbar-track {
