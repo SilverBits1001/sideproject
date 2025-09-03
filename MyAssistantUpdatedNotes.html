@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<html lang="en" data-theme="light">
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -33,7 +33,7 @@
       --title-bg: #0062b2;
       --title-text: #fff;
     }
-    .dark-theme {
+    [data-theme="dark"] {
       --bg-color: #121212;
       --text-color: #eee;
       --nav-bg: linear-gradient(90deg, #000, #333);
@@ -816,6 +816,22 @@
       min-height: 75px;
       resize: vertical;
     }
+
+    #theme-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--card-bg);
+      padding: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      z-index: 50;
+    }
   </style>
 
   <script>
@@ -1423,12 +1439,6 @@
             <a class="dropdown-item" target="_blank" href="https://whiteboard.spctrm.net/">Whiteboard</a>
             <a class="dropdown-item" target="_blank" href="https://csoc.corp.chartercom.com/issuesubmitter/KnownIssues.aspx">Comm Desk Issue Submitter</a>
 
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="custom-control custom-switch text-light">
-            <input type="checkbox" class="custom-control-input" id="theme-toggle">
-            <label class="custom-control-label" for="theme-toggle">Dark Mode</label>
           </div>
         </li>
       </ul>
@@ -6322,24 +6332,39 @@
         document.body.appendChild(initializedFlag);
       })();
     </script>
+    <div id="theme-toggle">
+      <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #fbbf24;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #60a5fa; display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </div>
     <script>
       (function() {
-        const toggle = document.getElementById('theme-toggle');
-        if (!toggle) return;
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-          document.documentElement.classList.add('dark-theme');
-          toggle.checked = true;
-        }
-        toggle.addEventListener('change', () => {
-          if (toggle.checked) {
-            document.documentElement.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const htmlEl = document.documentElement;
+
+        function setTheme(theme) {
+          htmlEl.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          if (theme === 'dark') {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
           } else {
-            document.documentElement.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
           }
-        });
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+          });
+        }
       })();
     </script>
   </body>
