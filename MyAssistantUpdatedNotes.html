@@ -6106,6 +6106,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" id="tech-copy-button" class="btn btn-primary">Copy to Clipboard</button>
+            <button type="button" id="tech-send-button" class="btn btn-primary">Send</button>
           </div>
         </div>
       </div>
@@ -6170,6 +6171,7 @@
         const techDeskMoveReasonDetails = document.getElementById('tech-desk-move-reason-details');
         const techDeskNumberInput = document.getElementById('tech-desk-number');
         const techCopyButton = document.getElementById('tech-copy-button');
+        const techSendButton = document.getElementById('tech-send-button');
 
         function formatTechTimeInput(event) {
           let input = event.target;
@@ -6190,6 +6192,27 @@
           if (!document.querySelector(`input[name="${groupName}"]:checked`)) {
             checkbox.checked = true;
           }
+        }
+
+        const getFormattedTime = (timeInput, amPmGroupName) => {
+          const time = timeInput.value;
+          const amPmEl = document.querySelector(`input[name="${amPmGroupName}"]:checked`);
+          const amPm = amPmEl ? amPmEl.value : 'AM';
+          return `${time} ${amPm}`;
+        };
+
+        function buildTechSegmentText() {
+          let reasonValue = techReasonSelect.value;
+          if (reasonValue.startsWith('IT8')) {
+            reasonValue = `IT8 OTHER: ${techOtherReasonDetails.value}`;
+          } else if (reasonValue.startsWith('IT9')) {
+            reasonValue = `IT9 Desk Move: ${techDeskMoveReasonDetails.value}`;
+          }
+
+          const startTime = getFormattedTime(techStartTimeInput, 'techStartTimeAmPm');
+          const endTime = getFormattedTime(techEndTimeInput, 'techEndTimeAmPm');
+
+          return `Name: ${techNameInput.value}\nPSID: ${techPsidInput.value}\nDate: ${techDateInput.value}\nStart Time: ${startTime}\nEnd Time: ${endTime}\nRequest: Tech Segment\nReason: ${reasonValue}\nDesk Number: ${techDeskNumberInput.value}`;
         }
 
         techStartTimeInput.addEventListener('input', formatTechTimeInput);
@@ -6229,25 +6252,7 @@
         techCopyButton.addEventListener('click', () => {
           const form = document.getElementById('tech-request-form');
           if (form.checkValidity()) {
-            let reasonValue = techReasonSelect.value;
-            if (reasonValue.startsWith('IT8')) {
-              reasonValue = `IT8 OTHER: ${techOtherReasonDetails.value}`;
-            } else if (reasonValue.startsWith('IT9')) {
-              reasonValue = `IT9 Desk Move: ${techDeskMoveReasonDetails.value}`;
-            }
-
-            const getFormattedTime = (timeInput, amPmGroupName) => {
-              const time = timeInput.value;
-              const amPmEl = document.querySelector(`input[name="${amPmGroupName}"]:checked`);
-              const amPm = amPmEl ? amPmEl.value : 'AM';
-              return `${time} ${amPm}`;
-            };
-
-            const startTime = getFormattedTime(techStartTimeInput, 'techStartTimeAmPm');
-            const endTime = getFormattedTime(techEndTimeInput, 'techEndTimeAmPm');
-
-            const formattedText = `Name: ${techNameInput.value}\nPSID: ${techPsidInput.value}\nDate: ${techDateInput.value}\nStart Time: ${startTime}\nEnd Time: ${endTime}\nRequest: Tech Segment\nReason: ${reasonValue}\nDesk Number: ${techDeskNumberInput.value}`;
-
+            const formattedText = buildTechSegmentText();
             navigator.clipboard.writeText(formattedText).then(() => {
               if (typeof showSnackbar === 'function') {
                 showSnackbar('Copied to Clipboard!');
@@ -6257,6 +6262,19 @@
               $('#techSegmentModal').modal('hide');
             });
 
+          } else {
+            form.reportValidity();
+          }
+        });
+
+        techSendButton.addEventListener('click', () => {
+          const form = document.getElementById('tech-request-form');
+          if (form.checkValidity()) {
+            const formattedText = buildTechSegmentText();
+            const subject = encodeURIComponent(`${techNameInput.value} ${techPsidInput.value} Tech Segment`);
+            const body = encodeURIComponent(formattedText);
+            window.location.href = `mailto:DL-CS-CA-SanDiego-BrianRichardson@charter.com?subject=${subject}&body=${body}`;
+            $('#techSegmentModal').modal('hide');
           } else {
             form.reportValidity();
           }
