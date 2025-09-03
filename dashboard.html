@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyAssistant Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --card-bg-color: #ffffff;
+            --text-color: #1f2937;
+            --text-color-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --primary-blue: #2563eb;
+            --primary-blue-hover: #1d4ed8;
+            --icon-bg-color: #e0e7ff;
+            --icon-bg-hover: #c7d2fe;
+            --table-header-bg: #f9fafb;
+            --table-row-hover: #f3f4f6;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-color: #f9fafb;
+            --text-color-secondary: #9ca3af;
+            --border-color: #374151;
+            --primary-blue: #3b82f6;
+            --primary-blue-hover: #2563eb;
+            --icon-bg-color: #374151;
+            --icon-bg-hover: #4b5563;
+            --table-header-bg: #1f2937;
+            --table-row-hover: #374151;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--bg-color);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--card-bg-color);
+            padding: 0.5rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        #toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-blue-700 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-white text-2xl font-bold">MyAssistant</span>
+                </div>
+                <div class="flex items-center space-x-4 text-sm font-medium">
+                    <a href="#" class="text-blue-200 hover:text-white">Agent OS</a>
+                    <a href="#" class="text-blue-200 hover:text-white">Panorama</a>
+                    <a href="#" class="text-blue-200 hover:text-white">CoPilot</a>
+                    <a href="#" class="text-blue-200 hover:text-white flex items-center">
+                        More Links
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="p-4 sm:p-6 lg:p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="card rounded-lg p-6 shadow-sm flex flex-col">
+                <h2 class="text-xl font-bold mb-4" style="color: var(--text-color);">Common Notes (click note to copy)</h2>
+                <div class="flex items-center gap-2 mb-4">
+                    <button class="p-2 rounded-full" style="background-color: var(--icon-bg-color); color: var(--primary-blue);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                    <button class="p-2 rounded-full" style="background-color: var(--icon-bg-color); color: var(--primary-blue);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg></button>
+                    <button class="p-2 rounded-full" style="background-color: var(--icon-bg-color); color: var(--primary-blue);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></button>
+                    <button class="p-2 rounded-full" style="background-color: var(--icon-bg-color); color: var(--primary-blue);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></button>
+                    <input type="text" placeholder="Enter your name" class="flex-grow p-2 rounded-md border" style="background-color: var(--bg-color); border-color: var(--border-color); color: var(--text-color);" />
+                </div>
+                <div class="custom-scrollbar overflow-y-auto pr-2 flex-grow h-64">
+                    <ul class="space-y-1 text-sm">
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // No Signal // Changed Input</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // No Signal // Powered On Stb And Cx Edu</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Remote Not Controlling Tv // Reprog Remote</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Remote Not Controlling Tv // Changed Batteries</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Missing Channels // Turned Off Guide Filters</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Picture No Audio // Sent Hit Pw Cycle</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Dvr Not Loading // Sent Hit Pw Cycle</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Pixelation Tiling Freezing // Tc</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // Stb Stuck In Bootloon // Device Swan</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // No Signal // Changed Input</li>
+                        <li class="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 copyable">Cci // No Signal // Powered On Stb And Cx Edu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card rounded-lg p-6 shadow-sm flex flex-col">
+                <h2 class="text-xl font-bold mb-2" style="color: var(--text-color);">Phone Numbers</h2>
+                <p class="text-sm mb-4" style="color: var(--text-color-secondary);">Lead Line Escalations & Proactive Maintenance are Warm Transfers. All others are cold.</p>
+                <div class="custom-scrollbar overflow-y-auto pr-2 flex-grow h-80">
+                    <table class="w-full text-sm text-left">
+                        <thead class="sticky top-0" style="background-color: var(--card-bg-color); color: var(--text-color-secondary);">
+                            <tr>
+                                <th scope="col" class="py-3 px-4 font-semibold">Department</th>
+                                <th scope="col" class="py-3 px-4 font-semibold">Number (click to copy)</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color: var(--text-color);">
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Lead Line</td><td class="py-3 px-4 font-medium copyable cursor-pointer">7795008</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Proactive Maintenance</td><td class="py-3 px-4 font-medium copyable cursor-pointer">6830500</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Managed Wifi</td><td class="py-3 px-4 font-medium copyable cursor-pointer">855-895-5302 1, 2</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">SMB Support</td><td class="py-3 px-4 font-medium copyable cursor-pointer">866-519-1263</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Enterprise</td><td class="py-3 px-4 font-medium copyable cursor-pointer">888-812-2591</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Enterprise Govt</td><td class="py-3 px-4 font-medium copyable cursor-pointer">866-850-5136</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Bulk Sales/Billing</td><td class="py-3 px-4 font-medium copyable cursor-pointer">833-697-7328</td></tr>
+                            <tr class="border-b" style="border-color: var(--border-color);"><td class="py-3 px-4">Home Security</td><td class="py-3 px-4 font-medium copyable cursor-pointer">800-547-3229</td></tr>
+                            <tr class=""><td class="py-3 px-4">Employee Services</td><td class="py-3 px-4 font-medium copyable cursor-pointer">888-765-4096</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card rounded-lg p-6 shadow-sm">
+                <h2 class="text-xl font-bold mb-4" style="color: var(--text-color);">Remotes</h2>
+                <div class="flex space-x-2">
+                    <button class="px-4 py-2 text-sm font-medium rounded-md" style="background-color: var(--primary-blue); color: white;">Cable</button>
+                    <button class="px-4 py-2 text-sm font-medium rounded-md" style="background-color: var(--icon-bg-color); color: var(--text-color);">Xumo</button>
+                    <button class="px-4 py-2 text-sm font-medium rounded-md" style="background-color: var(--icon-bg-color); color: var(--text-color);">DTA</button>
+                </div>
+            </div>
+            <div class="card rounded-lg p-6 shadow-sm">
+                <h2 class="text-xl font-bold mb-4" style="color: var(--text-color);">Troubleshooter Flows</h2>
+                <p style="color: var(--text-color-secondary);">Content for this section goes here.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="theme-toggle">
+        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400 hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </div>
+
+    <div id="toast">Copied to clipboard!</div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const htmlEl = document.documentElement;
+
+        const setTheme = theme => {
+            htmlEl.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'dark') {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        };
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+
+        const copyables = document.querySelectorAll('.copyable');
+        const toast = document.getElementById('toast');
+        copyables.forEach(el => {
+            el.addEventListener('click', () => {
+                const textToCopy = el.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
