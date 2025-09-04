@@ -41,6 +41,7 @@
       --icon-bg-hover: #c7d2fe;
       --table-header-bg: #f9fafb;
       --table-row-hover-bg: #f3f4f6;
+      --shadow-color: rgba(0,0,0,0.1);
     }
 
     [data-theme="dark"] {
@@ -55,6 +56,7 @@
       --icon-bg-hover: #4b5563;
       --table-header-bg: #1f2937;
       --table-row-hover-bg: #374151;
+      --shadow-color: rgba(0,0,0,0.8);
     }
 
     body {
@@ -74,6 +76,7 @@
 
     h3 {
       color: var(--text-color);
+      }
       font-size: 1.25rem;
       font-weight: 700;
     }
@@ -110,9 +113,42 @@
     [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #555; }
     [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #888; }
 
+    [data-theme="dark"] .bg-white,
+    [data-theme="dark"] .bg-gray-100,
+    [data-theme="dark"] .bg-gray-200,
+    [data-theme="dark"] .bg-gray-300,
+    [data-theme="dark"] .bg-light,
+    [data-theme="dark"] .dropdown-menu,
+    [data-theme="dark"] .list-group-item,
+    [data-theme="dark"] .modal-content {
+      background-color: var(--card-bg-color) !important;
+      color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .dropdown-item:hover,
+    [data-theme="dark"] .list-group-item:hover {
+      background-color: var(--table-row-hover-bg) !important;
+    }
+
+    [data-theme="dark"] .text-dark,
+    [data-theme="dark"] .text-black {
+      color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] font[color="#000000"] {
+      color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .shadow-sm,
+    [data-theme="dark"] .shadow,
+    [data-theme="dark"] .shadow-lg,
+    [data-theme="dark"] .shadow-xl {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6) !important;
+    }
+
     #theme-toggle {
       position: fixed; bottom: 1.5rem; left: 1.5rem; border-radius: 9999px; padding: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
       background-color: var(--card-bg-color); border: 1px solid var(--border-color);
       z-index: 50; cursor: pointer;
     }
@@ -218,11 +254,11 @@
       max-width: 75px;
       display: block;
       padding: 15px;
-      border: 1px solid #666;
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       cursor: pointer;
       margin: 5px auto;
-      box-shadow: 3px 3px 10px #ddd;
+      box-shadow: 3px 3px 10px var(--shadow-color);
     }
 
     .XumoRemote {
@@ -241,7 +277,7 @@
     }
 
     .remoteThumbActive {
-      background-color: #fff;
+      background-color: var(--card-bg-color);
       border: 2px solid var(--primary-blue);
     }
 
@@ -286,7 +322,8 @@
 
     .toggleNumOff {
       text-decoration: line-through;
-      background-color: #ccc;
+      background-color: var(--border-color);
+      color: var(--text-color);
     }
 
     .toggleNumOn {
@@ -350,8 +387,10 @@
       width: 95%;
       font-size: 16px;
       padding: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       margin-bottom: 12px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
     }
 
     #troubleshooterBody {
@@ -367,15 +406,14 @@
     }
 
     #tsUL li.crumbItem {
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       border-radius: 15px;
       margin-top: -1px;
-      background-color: #f6f6f6;
+      background-color: var(--card-bg-color);
       padding: 12px;
       text-decoration: none;
       font-size: 14px;
-      color: black;
-      /*display: none;*/
+      color: var(--text-color);
       font-weight: bold;
     }
 
@@ -404,8 +442,8 @@
     /* Style the tab */
     .tab {
       overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg-color);
     }
 
     /* Style the buttons that are used to open the tab content */
@@ -419,24 +457,28 @@
       cursor: pointer;
       padding: 14px 16px;
       transition: 0.3s;
+      color: var(--text-color);
     }
 
     /* Change background color of buttons on hover */
     .tab button:hover {
-      background-color: #ddd;
+      background-color: var(--table-row-hover-bg);
     }
 
     /* Create an active/current tablink class */
     .tab button.active {
-      background-color: #ccc;
+      background-color: var(--border-color);
+      color: var(--text-color);
     }
 
     /* Style the tab content */
     .tabcontent {
       display: none;
       padding: 6px 12px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       border-top: none;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
     }
 
     .openScript {
@@ -518,8 +560,8 @@
   margin: .25em 0;
   padding: 0 .25em;
   text-align: center;
-  border-left: 1px solid #ccc;
-  background-color: #fff;*/
+  border-left: 1px solid var(--border-color);
+  background-color: var(--card-bg-color);*/
     }
 
     /***** COMPANY DIFFERENCE WIDGET *******/
@@ -542,7 +584,7 @@
     }
 
     .sppLeg {
-      border-bottom: #dee2e6 solid 1px;
+      border-bottom: var(--border-color) solid 1px;
       margin: 10px 0;
       padding-bottom: 25px;
     }
@@ -557,8 +599,8 @@
     .builtCode {
       width: 200px;
       border-radius: 10px;
-      background-color: #f5f5f5;
-      box-shadow: 0 1px 3px rgba(51, 51, 51, .2), 0 2px 2px rgba(51, 51, 51, .12), 0 0 2px rgba(51, 51, 51, .14);
+      background-color: var(--card-bg-color);
+      box-shadow: 0 1px 3px var(--shadow-color), 0 2px 2px var(--shadow-color), 0 0 2px var(--shadow-color);
     }
 
     #packageBuilder {
@@ -606,7 +648,7 @@
       box-sizing: border-box;
       font-size: 1rem;
       padding: 8px 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       margin-bottom: 0;
       border-radius: 5px;
     }
