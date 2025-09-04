@@ -1,137 +1,143 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="author" content="Michael Romanzow">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" xintegrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Assistant</title>
   <link rel="icon" type="image/x-icon" href="https://pics.freeicons.io/uploads/icons/png/10463452341582823580-512.png">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" xintegrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <title>My Assistant</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
   <style>
-    * {
-      font-family: 'Roboto', sans-serif;
+    :root {
+      --bg-color: #f3f4f6;
+      --card-bg-color: #ffffff;
+      --text-color: #1f2937;
+      --text-color-secondary: #6b7280;
+      --border-color: #e5e7eb;
+      --primary-blue: #2563eb;
+      --primary-blue-hover: #1d4ed8;
+      --icon-bg-color: #e0e7ff;
+      --icon-bg-hover: #c7d2fe;
+      --table-header-bg: #f9fafb;
+      --table-row-hover-bg: #f3f4f6;
     }
 
-    ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      background-color: #F5F5F5;
+    [data-theme="dark"] {
+      --bg-color: #111827;
+      --card-bg-color: #1f2937;
+      --text-color: #f9fafb;
+      --text-color-secondary: #9ca3af;
+      --border-color: #374151;
+      --primary-blue: #3b82f6;
+      --primary-blue-hover: #2563eb;
+      --icon-bg-color: #374151;
+      --icon-bg-hover: #4b5563;
+      --table-header-bg: #1f2937;
+      --table-row-hover-bg: #374151;
     }
 
-    ::-webkit-scrollbar {
-      width: 10px;
-      background-color: #F5F5F5;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-      background-color: #aaa
-    }
-
-    table {
-      border-collapse: collapse;
-    }
-
-    td,
-    th {
-      border: 1px solid #999;
-      padding: 5px 10px;
-    }
-
-    th {
-      background-color: #eee;
-      color: #333;
-    }
-
-    ul {
-      list-style-type: none;
-    }
-
-    a {
-      color: #0062b2;
-      display: inline-block;
-      transition: .3s;
-      margin-right: 5px;
-      text-decoration: none;
-    }
-
-    a:hover {
-      font-weight: bold;
-    }
-
-    a[aria-expanded=false] .fa-minus {
-      display: none;
-    }
-
-    a[aria-expanded=true] .fa-plus {
-      display: none;
-    }
-
-    h3 {
-      font-size: 1.500rem;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    #container {
-      width: 90vw;
-      margin: auto;
-      padding: 20px 0;
-      column-count: 2;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .card {
-      border: none;
-      padding: 0;
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
-    .card-header {
-      background: transparent;
-      border-width: 0px;
-      padding: 0px;
+    h3 {
+      color: var(--text-color);
+      font-size: 1.25rem;
+      font-weight: 700;
     }
 
-    .card-header .btn {
-      color: black;
-      font-weight: 900;
+    input,
+    select,
+    textarea {
+      background-color: var(--bg-color);
+      border-color: var(--border-color);
+      color: var(--text-color);
     }
 
-    .card-body {
-      background: #f6f6f6;
-      border-radius: 7px;
-      border: 1px solid #ddd;
+    table {
+      color: var(--text-color);
     }
 
-    .navbar {
-      background: rgb(0, 72, 131);
-      background: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);
+    table th {
+      background-color: var(--table-header-bg);
+      color: var(--text-color-secondary);
+    }
+
+    table tr {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    table tr:hover {
+      background-color: var(--table-row-hover-bg);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: var(--bg-color); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #888; border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #555; }
+    [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #555; }
+    [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #888; }
+
+    #theme-toggle {
+      position: fixed; bottom: 1.5rem; left: 1.5rem; border-radius: 9999px; padding: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      background-color: var(--card-bg-color); border: 1px solid var(--border-color);
+      z-index: 50; cursor: pointer;
+    }
+
+    #toast {
+      position: fixed; bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%); opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 100;
+    }
+
+    #toast.show { opacity: 1; visibility: visible; }
+
+    a[aria-expanded=false] .fa-minus { display: none; }
+    a[aria-expanded=true] .fa-plus { display: none; }
+
+    .activeClassLbl {
+      font-weight: bold;
+      color: #fff;
+      background-color: var(--primary-blue);
+      transition: background 0.3s ease;
     }
 
     nav .navbar-nav .nav-item .nav-link {
       color: #eee !important;
-    }
-
-    nav .navbar-nav li a:hover {}
-
-    .navbar-brand h3 {
-      font-weight: bold !important;
-      margin-right: 2px;
-      margin-bottom: 0px;
     }
 
     .common-links-wrapper {
@@ -140,62 +146,15 @@
       overflow-x: hidden;
     }
 
-    input {
-      width: 95%;
-      font-size: 16px;
-      padding: 12px;
-      border: 1px solid #ddd;
-      margin-bottom: 12px;
-      max-width: 300px;
-      border-radius: 5px;
-    }
-
-    .title {
-      color: #fff;
-      background-color: #0062b2;
-      padding: 10px;
-    }
-
-    .widget {
-      margin-bottom: 20px;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 3px 3px 10px #ddd;
-      background-color: #fff;
-      page-break-inside: avoid
-    }
-
-    .widget h3 {
-      padding: 10px;
-      margin: 0px -10px 10px 10px;
-      border-radius: 7px 7px 0 0;
-      color: #333;
-    }
-
     .clearFix::after {
       content: "";
       display: block;
       clear: both;
     }
 
-    h3 {
-      margin-top: 0;
-    }
-
-    .noBotMarg {
-      margin-bottom: 0px;
-    }
-
-    .rightList {}
-
-    .leftList {
-      float: left;
-      width: 47%;
-    }
-
-    .bookList {
-      column-count: 3;
-    }
+    .noBotMarg { margin-bottom: 0; }
+    .leftList { float: left; width: 47%; }
+    .bookList { column-count: 3; }
 
     /**** REMOTE WIDGET *****/
     #remoteDiv {
@@ -228,16 +187,9 @@
       display: flex;
       flex-direction: row;
       padding: 5px;
-      background-color: #eee;
+      background-color: var(--bg-color);
       border-radius: 25px;
       cursor: pointer;
-    }
-
-    .activeClassLbl {
-      font-weight: bold;
-      color: #eee;
-      background-color: #0062b2;
-      transition: background 0.5s ease;
     }
 
     .stdRemoteDivLbl {}
@@ -290,7 +242,7 @@
 
     .remoteThumbActive {
       background-color: #fff;
-      border: 2px solid #0073d1;
+      border: 2px solid var(--primary-blue);
     }
 
     .remoteMainLink {
@@ -339,7 +291,7 @@
 
     .toggleNumOn {
       border-radius: 5px;
-      background-color: #0073d1;
+      background-color: var(--primary-blue);
       padding: 1px;
       color: white;
     }
@@ -375,23 +327,21 @@
       cursor: pointer;
       justify-content: center;
       align-items: center;
-      /* Allows the span to have a width and height */
       width: 40px;
-      /* Your desired width */
       height: 40px;
       padding: 7px;
-      color: #0073d1;
+      color: var(--primary-blue);
       border-radius: 10px;
-      border: solid 2px #0073d1;
+      border: solid 2px var(--primary-blue);
     }
 
     .notes-filter:hover {
-      outline: solid 1px #0073d1;
+      outline: solid 1px var(--primary-blue);
     }
 
     .notes-filter-selected {
       color: white;
-      background-color: #0073d1;
+      background-color: var(--primary-blue);
     }
 
     #tsDiv {}
@@ -617,7 +567,7 @@
 
     .incrementButton {
       cursor: pointer;
-      border: 2px #0073d1 solid;
+      border: 2px var(--primary-blue) solid;
       padding: 0 5px;
       border-radius: 7px;
     }
@@ -633,92 +583,7 @@
       cursor: pointer;
     }
 
-    /* The snackbar - position it at the bottom and in the middle of the screen */
-    #snackbar {
-      visibility: hidden;
-      /* Hidden by default. Visible on click */
-      min-width: 250px;
-      /* Set a default minimum width */
-      margin-left: -125px;
-      /* Divide value of min-width by 2 */
-      background-color: #0062b2;
-      /* Black background color */
-      color: #fff;
-      /* White text color */
-      text-align: center;
-      /* Centered text */
-      border-radius: 2px;
-      /* Rounded borders */
-      padding: 16px;
-      /* Padding */
-      position: fixed;
-      /* Sit on top of the screen */
-      z-index: 1;
-      /* Add a z-index if needed */
-      left: 50%;
-      /* Center the snackbar */
-      bottom: 30px;
-      /* 30px from the bottom */
-    }
-
-    /* Show the snackbar when clicking on a button (class added with JavaScript) */
-    #snackbar.show {
-      visibility: visible;
-      /* Show the snackbar */
-      /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-  However, delay the fade out process for 2.5 seconds */
-      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    /* Animations to fade the snackbar in and out */
-    @-webkit-keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @-webkit-keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
+    /* snackbar styles removed in favor of toast */
 
     /* Styles for the Tech Segment Modal */
     .tech-form-group {
@@ -817,44 +682,36 @@
     });
 
     function copyToClip(e) {
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function() {
-        x.className = x.className.replace("show", "");
-      }, 3000);
-      navigator.clipboard.writeText(e.target.innerText);
-      let selectedText = "";
+      navigator.clipboard.writeText(e.target.innerText.trim());
+      showToast();
     }
 
     function copyToClipClass(e, itemClass) {
-      const hasClass = event.target.classList.contains(itemClass);
-      if (hasClass) {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
-        setTimeout(function() {
-          x.className = x.className.replace("show", "");
-        }, 3000);
-        navigator.clipboard.writeText(e.target.innerText);
+      if (event.target.classList.contains(itemClass)) {
+        navigator.clipboard.writeText(e.target.innerText.trim());
+        showToast();
       }
     }
 
     function copyToClipPodCodes(element) {
-      // Create a cloned version of the clicked <li> and remove any <span> elements
       const textToCopy = element.cloneNode(true);
       textToCopy.querySelectorAll("span").forEach(span => span.remove());
-      // Copy the clean text to the clipboard
       navigator.clipboard.writeText(textToCopy.innerText.trim()).then(() => {
-        showSnackbar("Pod code copied!"); // Show a message when copied
+        showToast("Pod code copied!");
       });
     }
 
-    function showSnackbar(message) {
-      var snackbar = document.getElementById("snackbar");
-      snackbar.textContent = message;
-      snackbar.classList.add("show");
+    function showToast(message = "Copied to clipboard!") {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
       setTimeout(() => {
-        snackbar.classList.remove("show");
-      }, 3000);
+        toast.classList.remove("show");
+      }, 2000);
+    }
+
+    function showSnackbar(message) {
+      showToast(message);
     }
 
     function SelectRemoteClass(selectedClass) {
@@ -1326,11 +1183,11 @@
 
 </head>
 
-<body style=" background-color: #f7f7f7; ">
+<body class="antialiased">
 
   
   
-  <nav class="navbar  fixed-top navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky top-0 z-40" style="background: linear-gradient(90deg, rgba(0, 72, 131, 1) 0%, rgba(0, 115, 209, 1) 72%);">
    
   <a class="navbar-brand" style="display:flex; flex-direction: row; align-items:end;" href="#">
 
@@ -1399,10 +1256,9 @@
     </div>
   </nav>
   
-  <div id="container" class="mt-5 pt-4">
+  <main id="container" class="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8" style="column-count: 2; column-gap: 1.5rem;">
 
-    <div id="notesDiv" class="widget ">
-      <div id="snackbar">Copied to Clipboard!</div>
+    <div id="notesDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -1412,8 +1268,8 @@
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#notesBody">
 
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;"></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
 
           </a>
 
@@ -1541,7 +1397,7 @@
       </div>
 
     </div>
-        <div id="remoteDiv" class="widget">
+        <div id="remoteDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
 
       <div class="remoteHeader">
         <h3>
@@ -2384,7 +2240,7 @@
       <div class="clearFix"></div>
     </div>
 
-    <div id="ehhDiv" class="widget">
+    <div id="ehhDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -2393,8 +2249,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#ehhBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -2454,7 +2310,7 @@
 
     </div>
 
-    <div id="copilotDiv" class="widget">
+    <div id="copilotDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
 
       <div class="remoteHeader">
         <div style="">
@@ -2464,8 +2320,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#copilotBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -2502,7 +2358,7 @@
 
     </div>
 
-    <div id="thirdPartyDiv" class="widget">
+    <div id="thirdPartyDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -2513,8 +2369,8 @@
 
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#thirdPartyBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5039,7 +4895,7 @@
       </div>
     </div>
 
-    <div id="transferDiv" class="widget">
+    <div id="transferDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5048,8 +4904,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#transfersBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5208,7 +5064,7 @@
 
       </div>
     </div>
-    <div id="phoneNumbersDiv" class="widget">
+    <div id="phoneNumbersDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5217,8 +5073,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#phoneNumbersBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5332,7 +5188,7 @@
 
       </div>
     </div>
-    <div id="tsDiv" class="widget">
+    <div id="tsDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5341,8 +5197,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#troubleshooterBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5394,8 +5250,7 @@
 
     </div>
 
-    <div id="odnControl" class="widget ">
-      <div id="snackbar">Copied to Clipboard!</div>
+    <div id="odnControl" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5405,8 +5260,8 @@
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#odnControlBody">
 
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;"></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
 
           </a>
 
@@ -5434,7 +5289,7 @@
 
             </select>
 
-            <input style="  width:75px; height:40px; background-color: #0062b2;
+            <input style="  width:75px; height:40px; background-color: var(--primary-blue);
         color: #FFFFFF;
         padding: 7px;
         border-radius: 50px;
@@ -5452,7 +5307,7 @@
       </div>
 
     </div>
-    <div id="xumoSimDiv" class="widget">
+    <div id="xumoSimDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5461,8 +5316,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#xumoSimBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5499,7 +5354,7 @@
       </div>
 
     </div>
-    <div id="codesDiv" class="widget">
+    <div id="codesDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5508,8 +5363,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#codesBody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5651,10 +5506,10 @@
                     <div>
                       <strong class="ml-2"> Quantity: <span id="count">1</span></strong>
                       <a id="my-button" class=" incrementButton">
-                        <i class="fas fa-minus fa-sm" style="color: #0073d1;"></i>
+                        <i class="fas fa-minus fa-sm" style="color: var(--primary-blue);"></i>
                       </a>
                       <a id="my-button2" class=" incrementButton">
-                        <i class="fas fa-plus fa-sm" style="color: #0073d1;"></i>
+                        <i class="fas fa-plus fa-sm" style="color: var(--primary-blue);"></i>
                       </a>
                     </div>
 
@@ -5813,7 +5668,7 @@
       </div>
     </div>
 
-    <div id="SLADiv" class="widget">
+    <div id="SLADiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <div class="remoteHeader">
         <div style="">
           <h3>
@@ -5822,8 +5677,8 @@
         </div>
         <div>
           <a aria-expanded="true" data-toggle="collapse" data-target="#SLABody">
-            <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-            <i class="fas fa-plus fa-lg" style="color: #0073d1;" /></i>
+            <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+            <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
 
         </div>
@@ -5870,13 +5725,13 @@
       </div>
     </div>
 
-    <div id="SLADiv" class="widget">
+    <div id="SLADiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <!-- Widget Header -->
       <div class="widget-header d-flex justify-content-between align-items-center">
         <h3>SLA for ETD</h3>
         <a aria-expanded="true" data-toggle="collapse" data-target="#SLADivBody">
-          <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-          <i class="fas fa-plus fa-lg" style="color: #0073d1;"></i>
+          <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+          <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
         </a>
       </div>
 
@@ -5940,13 +5795,13 @@
       </div>
     </div>
 
-    <div id="BalancingDiv" class="widget">
+    <div id="BalancingDiv" class="card rounded-lg p-6 shadow-sm flex flex-col mb-6">
       <!-- Widget Header -->
       <div class="widget-header d-flex justify-content-between align-items-center">
         <h3>Balancing</h3>
         <a aria-expanded="true" data-toggle="collapse" data-target="#BalancingDivBody">
-          <i class="fas fa-minus fa-lg" style="color: #0073d1;"></i>
-          <i class="fas fa-plus fa-lg" style="color: #0073d1;"></i>
+          <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
+          <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
         </a>
       </div>
 
@@ -6015,7 +5870,7 @@
 
         </div>
       </div>
-    </div>
+    </main>
 
     <div class="modal fade" id="techSegmentModal" tabindex="-1" role="dialog" aria-labelledby="techSegmentModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -6111,10 +5966,12 @@
       </div>
     </div>
 
+    <div id="theme-toggle">
+      <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400 hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </div>
+    <div id="toast" class="bg-gray-800 text-white py-2 px-4 rounded-lg shadow-lg">Copied to clipboard!</div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
       document.getElementById("notesList").addEventListener("click", copyToClip);
       document.getElementById("wifiPodCodesWrapper").addEventListener("click", (event) => {
@@ -6268,70 +6125,28 @@
         document.body.appendChild(initializedFlag);
       })();
     </script>
+
+    <script>
+      const themeToggle = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      const htmlEl = document.documentElement;
+
+      const setTheme = (theme) => {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        sunIcon.classList.toggle('hidden', theme === 'dark');
+        moonIcon.classList.toggle('hidden', theme !== 'dark');
+      };
+
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlEl.getAttribute('data-theme');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+    </script>
   </body>
 
 </html>
-
-<!-- 
-
-Action Required: 
-
-Effective immediately and until further notice, please make sure you read the following mandatory script when scheduling service appointments.
-
-Tech Script: 
-(Preferred Name), You will be reminded of the appointment prior to the technician’s arrival, what is the best phone number to text a reminder of the appointment? (Offer Email/Phone Call if customer refuses text)  Someone the age of 18 or over with a valid ID must be present during the appointment. Great news! The soonest appointment we have you scheduled for [insert day of week], [insert date] between [insert time] and [insert time]. The tech can arrive ANY TIME within that appointment window.
-    • You will receive 3 notifications from Spectrum: Day before, day of and when tech is en route. 
-    • You can track your technician (like Uber) and see where they are at with these notifications (via the link).
-    • You can also cancel/reschedule appointment through the notifications. 
-    • If you do not “confirm your appointment”, the tech will STILL arrive. 
-    • Should your services return, we encourage you to keep your appointment as the tech may still be needed to fix issues 
-    • If any other issues arise, please inform the tech when he is onsite.
-    • Pets must be secured to ensure the safety of the technician.
-    • Is there anything else you would like help with today or any questions I can answer for you? 
-*** EHH161 – Manage Service Appointments Online***
-*** EHH377 – Benefits of TechTracker Technology***
-
-
-
-
-
-
-
-
-
-
-Action Required:
-
-Effective immediately and until further notice, please make sure you read the following mandatory script when scheduling service appointments.
-
-Tech Script:
-
-Sr/Sra ____, La cita esta programada para el dia de [Day of week], [insert date] Entre [beginning-end time] de la Mañana/Tarde/Mediodia(noon). El técnico puede llegar ENTRE ese horario. ¿Cual es un buen numero de telefono para mandar recordatorios de la cita por texto?  (Offer Email/Phone Call if customer refuses text).En caso de que usted no pueda estar presente, alguien mayor de 18 años con identificación valida podrá.
-
-• Va a recibir 3 notificaciones de Spectrum: El dia anterior, el dia de la cita, y cuando el técnico esté en camino.
-
-• En las notificaciones hay un enlace para ver la ubicación del técnico.
-
-• También puede reprogramar e incluso cancelar su cita a traves del mensaje de texto de confirmación.
-
-• Si no confirma su cita, el técnico de todas formas irá a su casa.
-
-• Si sus servicios regresan, le sugerimos que no cancele porque el técnico podrá verificar si sus servicios necesitan mantenimiento
-
-• Si sus otros servicios o dispositivos no trabajan, porfavor informe al técnico en el sitio
-
-• Las Macotas deben de estar aseguradas por su seguridad y la del técnico
-
-• ¿Hay algo mas en lo que pueda ayurdarlo (ayudarle) hoy?
-
-
-
-
--->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
-<!-- 
-
-https://pics.freeicons.io/uploads/icons/png/5636191571582823586-512.png
-https://pics.freeicons.io/uploads/icons/png/2949878391595452653-512.png
--->
