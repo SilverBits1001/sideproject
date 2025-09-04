@@ -41,6 +41,7 @@
       --icon-bg-hover: #c7d2fe;
       --table-header-bg: #f9fafb;
       --table-row-hover-bg: #f3f4f6;
+      --shadow-color: rgba(0,0,0,0.1);
     }
 
     [data-theme="dark"] {
@@ -55,6 +56,7 @@
       --icon-bg-hover: #4b5563;
       --table-header-bg: #1f2937;
       --table-row-hover-bg: #374151;
+      --shadow-color: rgba(0,0,0,0.8);
     }
 
     body {
@@ -74,6 +76,7 @@
 
     h3 {
       color: var(--text-color);
+      }
       font-size: 1.25rem;
       font-weight: 700;
     }
@@ -110,9 +113,42 @@
     [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #555; }
     [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #888; }
 
+    [data-theme="dark"] .bg-white,
+    [data-theme="dark"] .bg-gray-100,
+    [data-theme="dark"] .bg-gray-200,
+    [data-theme="dark"] .bg-gray-300,
+    [data-theme="dark"] .bg-light,
+    [data-theme="dark"] .dropdown-menu,
+    [data-theme="dark"] .list-group-item,
+    [data-theme="dark"] .modal-content {
+      background-color: var(--card-bg-color) !important;
+      color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .dropdown-item:hover,
+    [data-theme="dark"] .list-group-item:hover {
+      background-color: var(--table-row-hover-bg) !important;
+    }
+
+    [data-theme="dark"] .text-dark,
+    [data-theme="dark"] .text-black {
+      color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] font[color="#000000"] {
+      color: var(--text-color) !important;
+    }
+
+    [data-theme="dark"] .shadow-sm,
+    [data-theme="dark"] .shadow,
+    [data-theme="dark"] .shadow-lg,
+    [data-theme="dark"] .shadow-xl {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6) !important;
+    }
+
     #theme-toggle {
       position: fixed; bottom: 1.5rem; left: 1.5rem; border-radius: 9999px; padding: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
       background-color: var(--card-bg-color); border: 1px solid var(--border-color);
       z-index: 50; cursor: pointer;
     }
@@ -207,12 +243,6 @@
     #remoteDetail {
       min-height: 500px;
     }
-
-    /* Hide all remote detail panels by default to prevent flash before JS hides them */
-    #remoteDetail > div {
-      display: none;
-    }
-
     .remoteMain {
       /*float: left;*/
       float: right;
@@ -224,11 +254,11 @@
       max-width: 75px;
       display: block;
       padding: 15px;
-      border: 1px solid #666;
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       cursor: pointer;
       margin: 5px auto;
-      box-shadow: 3px 3px 10px #ddd;
+      box-shadow: 3px 3px 10px var(--shadow-color);
     }
 
     .XumoRemote {
@@ -247,7 +277,7 @@
     }
 
     .remoteThumbActive {
-      background-color: #fff;
+      background-color: var(--card-bg-color);
       border: 2px solid var(--primary-blue);
     }
 
@@ -292,7 +322,8 @@
 
     .toggleNumOff {
       text-decoration: line-through;
-      background-color: #ccc;
+      background-color: var(--border-color);
+      color: var(--text-color);
     }
 
     .toggleNumOn {
@@ -356,8 +387,10 @@
       width: 95%;
       font-size: 16px;
       padding: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       margin-bottom: 12px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
     }
 
     #troubleshooterBody {
@@ -373,15 +406,14 @@
     }
 
     #tsUL li.crumbItem {
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       border-radius: 15px;
       margin-top: -1px;
-      background-color: #f6f6f6;
+      background-color: var(--card-bg-color);
       padding: 12px;
       text-decoration: none;
       font-size: 14px;
-      color: black;
-      /*display: none;*/
+      color: var(--text-color);
       font-weight: bold;
     }
 
@@ -410,8 +442,8 @@
     /* Style the tab */
     .tab {
       overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg-color);
     }
 
     /* Style the buttons that are used to open the tab content */
@@ -425,24 +457,28 @@
       cursor: pointer;
       padding: 14px 16px;
       transition: 0.3s;
+      color: var(--text-color);
     }
 
     /* Change background color of buttons on hover */
     .tab button:hover {
-      background-color: #ddd;
+      background-color: var(--table-row-hover-bg);
     }
 
     /* Create an active/current tablink class */
     .tab button.active {
-      background-color: #ccc;
+      background-color: var(--border-color);
+      color: var(--text-color);
     }
 
     /* Style the tab content */
     .tabcontent {
       display: none;
       padding: 6px 12px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       border-top: none;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
     }
 
     .openScript {
@@ -524,8 +560,8 @@
   margin: .25em 0;
   padding: 0 .25em;
   text-align: center;
-  border-left: 1px solid #ccc;
-  background-color: #fff;*/
+  border-left: 1px solid var(--border-color);
+  background-color: var(--card-bg-color);*/
     }
 
     /***** COMPANY DIFFERENCE WIDGET *******/
@@ -548,7 +584,7 @@
     }
 
     .sppLeg {
-      border-bottom: #dee2e6 solid 1px;
+      border-bottom: var(--border-color) solid 1px;
       margin: 10px 0;
       padding-bottom: 25px;
     }
@@ -563,8 +599,8 @@
     .builtCode {
       width: 200px;
       border-radius: 10px;
-      background-color: #f5f5f5;
-      box-shadow: 0 1px 3px rgba(51, 51, 51, .2), 0 2px 2px rgba(51, 51, 51, .12), 0 0 2px rgba(51, 51, 51, .14);
+      background-color: var(--card-bg-color);
+      box-shadow: 0 1px 3px var(--shadow-color), 0 2px 2px var(--shadow-color), 0 0 2px var(--shadow-color);
     }
 
     #packageBuilder {
@@ -612,7 +648,7 @@
       box-sizing: border-box;
       font-size: 1rem;
       padding: 8px 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       margin-bottom: 0;
       border-radius: 5px;
     }
@@ -682,9 +718,30 @@
       /*
             $(".codeSearchInput").on('input', function() {
               SearchCodesNew($(this));
-        
+
             });
             */
+      document.querySelectorAll('[data-collapse-target]').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const selector = trigger.getAttribute('data-collapse-target');
+          const targets = document.querySelectorAll(selector);
+          if (!targets.length) return;
+          targets.forEach(t => t.classList.toggle('hidden'));
+          const isHidden = targets[0].classList.contains('hidden');
+          trigger.setAttribute('aria-expanded', (!isHidden).toString());
+          if (selector === '#remoteDiv') {
+            if (isHidden) {
+              ClearRemoteDesc();
+            } else {
+              const activeThumb = document.querySelector('.remoteThumbActive');
+              if (activeThumb) {
+                const id = Array.from(activeThumb.classList).find(c => c !== 'remoteThumb' && c !== 'remoteThumbActive');
+                if (id) SwitchRemote(id);
+              }
+            }
+          }
+        });
+      });
     });
 
     function copyToClip(e) {
@@ -744,16 +801,17 @@
     function SwitchRemote(title) {
       ClearToggleNum();
       ClearRemoteDesc();
-      $("#" + title).show();
+      const panel = document.getElementById(title);
+      if (panel) {
+        panel.classList.remove('hidden');
+      }
       // clear selected thumb, hightlight cur thumb
       $(".remoteThumb").toggleClass("remoteThumbActive", false);
       $("." + title).toggleClass("remoteThumbActive", true);
     }
 
     function ClearRemoteDesc() {
-      $('#remoteDetail').children('div').each(function() {
-        $(this).hide();
-      });
+      document.querySelectorAll('#remoteDetail > div').forEach(div => div.classList.add('hidden'));
     }
 
     function InitToggleNum() {
@@ -1201,10 +1259,10 @@
 
 
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-collapse-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="hidden navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" target="_blank" href="https://agent-os.prod.portal.charter.com/">Agent OS<span class="sr-only">(current)</span></a>
@@ -1272,7 +1330,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#notesBody">
+          <a aria-expanded="false" data-collapse-target="#notesBody">
 
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
@@ -1283,7 +1341,7 @@
 
       </div>
 
-      <div id="notesBody" class="collapse show">
+      <div id="notesBody" class="hidden">
 
         <div class="mx-4" style="display:flex; flex-direction:row; justify-content: space-between">
 
@@ -1447,7 +1505,7 @@
 
       <div id="remoteDetail">
 
-        <div id="SpectrumGuideRemote">
+        <div id="SpectrumGuideRemote" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target="Worldbox" href="https://www.spectrum.net/support/remote/spectrum-guide-remote">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/sup_urc1160-1462910528.jpg" /></a>
@@ -1515,7 +1573,7 @@
           </div>
         </div>
 
-        <div id="XumoRemoteV1">
+        <div id="XumoRemoteV1" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target="_blank" href="https://www.spectrum.net/support/tv/pairing-and-troubleshooting-your-xumo-stream-box-remote">(click for more instructions)<br /><br />
               <img class="remoteMainImg xumoRemoteMain" src="https://www.xumo.com/_next/image?url=%2Fstatic%2Fimages%2Fre-panorama.png&w=3840&q=75" /></a>
@@ -1538,12 +1596,12 @@
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       How do I pair my Xumo Stream Box remotes?
                     </button>
                   </h2>
                 </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#xumoTroubleshooting">
+                <div id="collapseOne" class="hidden" aria-labelledby="headingOne">
                   <div class="card-body">
                     <p><strong>Pairing the PR1 remote:</strong></p>
                     <ol>
@@ -1558,12 +1616,12 @@
               <div class="card">
                 <div class="card-header" id="headingTwo">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                       How do I pair my remote to my TV to control volume and power?
                     </button>
                   </h2>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#xumoTroubleshooting">
+                <div id="collapseTwo" class="hidden" aria-labelledby="headingTwo">
                   <div class="card-body">
                     <ol>
                       <li>Select <strong>Settings</strong> (with your remote pointed towards your device).</li>
@@ -1579,12 +1637,12 @@
               <div class="card">
                 <div class="card-header" id="headingThree">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       How do I pair my remote to my TV using make and model info?
                     </button>
                   </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#xumoTroubleshooting">
+                <div id="collapseThree" class="hidden" aria-labelledby="headingThree">
                   <div class="card-body">
                     <ol>
                       <li>Select <strong>Settings</strong> (with your remote pointed towards your device).</li>
@@ -1600,12 +1658,12 @@
               <div class="card">
                 <div class="card-header" id="headingFour">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                       How do I unpair my Xumo Stream Box remotes?
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#xumoTroubleshooting">
+                <div id="collapseFour" class="hidden" aria-labelledby="headingFour">
                   <div class="card-body">
                     <p><strong>Unpairing the PR1 remote:</strong></p>
                     <ol>
@@ -1620,12 +1678,12 @@
               <div class="card">
                 <div class="card-header" id="headingFive">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                       Why is my Xumo remote able to control the volume or power for my TV, but not both at the same time?
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#xumoTroubleshooting">
+                <div id="collapseFive" class="hidden" aria-labelledby="headingFive">
                   <div class="card-body">
                     <p>Your remote may not be paired correctly with your TV. The system may be using a code that only controls one function. Try manually selecting the correct code.</p>
                   </div>
@@ -1636,7 +1694,7 @@
 
           </div>
         </div>
-        <div id="XumoRemoteV2">
+        <div id="XumoRemoteV2" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target="_blank" href="https://www.spectrum.net/support/tv/pairing-and-troubleshooting-your-xumo-stream-box-remote">(click for more instructions)<br /><br />
               <img class="remoteMainImg xumoRemoteMain" src="https://i.imgur.com/SqHI1A1.jpg" /></a>
@@ -1658,13 +1716,13 @@
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="btn btn-link btn-block text-left" type="button" data-collapse-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       To pair your remote with your Xumo Stream Box with Bluetooth
                     </button>
                   </h2>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#xumoTroubleshooting">
+                <div id="collapseOne" class="hidden" aria-labelledby="headingOne">
                   <div class="card-body">
                     <ol>
                       <li>From the Xumo OS home screen press and hold the 1 and 3 button on your remote"</li>
@@ -1676,12 +1734,12 @@
               <div class="card">
                 <div class="card-header" id="headingTwo">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                       To pair your remote to your TV for control of volume and power
                     </button>
                   </h2>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#xumoTroubleshooting">
+                <div id="collapseTwo" class="hidden" aria-labelledby="headingTwo">
                   <div class="card-body">
                     <p>If you are unable to control volume, power or both after these steps try to pair your remote using TV make and model.</p>
 
@@ -1698,12 +1756,12 @@
               <div class="card">
                 <div class="card-header" id="headingThree">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       To pair your remote to your TV using make and model
                     </button>
                   </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#xumoTroubleshooting">
+                <div id="collapseThree" class="hidden" aria-labelledby="headingThree">
                   <div class="card-body">
                     <ol>
                       <li>Press the&nbsp;Settings&nbsp;(with your remote pointed towards your device).</li>
@@ -1721,12 +1779,12 @@
               <div class="card">
                 <div class="card-header" id="headingFour">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                       To pair your remote to your speakers using make and model
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#xumoTroubleshooting">
+                <div id="collapseFour" class="hidden" aria-labelledby="headingFour">
                   <div class="card-body">
                     <ol>
                       <li>Press the&nbsp;Settings&nbsp;(with your remote pointed towards your device).</li>
@@ -1742,12 +1800,12 @@
               <div class="card">
                 <div class="card-header" id="headingFive">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                       To unpair your remote from your TV
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#xumoTroubleshooting">
+                <div id="collapseFive" class="hidden" aria-labelledby="headingFive">
                   <div class="card-body">
                     <ol>
                       <li>
@@ -1764,7 +1822,7 @@
 
           </div>
         </div>
-        <div id="XumoRemoteV3">
+        <div id="XumoRemoteV3" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target="_blank" href="https://www.spectrum.net/support/tv/pairing-and-troubleshooting-your-xumo-stream-box-remote">(click for more instructions)<br /><br />
               <img class="remoteMainImg xumoRemoteMain xumoRemoteMainImg" src="https://i.imgur.com/GlWkRG3.png" /></a>
@@ -1786,13 +1844,13 @@
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="btn btn-link btn-block text-left" type="button" data-collapse-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       To pair your remote with your Xumo Stream Box with Bluetooth
                     </button>
                   </h2>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#xumoTroubleshooting">
+                <div id="collapseOne" class="hidden" aria-labelledby="headingOne">
                   <div class="card-body">
                     <ol>
                       <li>From the Xumo OS home screen press and hold the 1 and 3 button on your remote"</li>
@@ -1804,12 +1862,12 @@
               <div class="card">
                 <div class="card-header" id="headingTwo">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                       To pair your remote to your TV for control of volume and power
                     </button>
                   </h2>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#xumoTroubleshooting">
+                <div id="collapseTwo" class="hidden" aria-labelledby="headingTwo">
                   <div class="card-body">
                     <p>If you are unable to control volume, power or both after these steps try to pair your remote using TV make and model.</p>
 
@@ -1826,12 +1884,12 @@
               <div class="card">
                 <div class="card-header" id="headingThree">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       To pair your remote to your TV using make and model
                     </button>
                   </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#xumoTroubleshooting">
+                <div id="collapseThree" class="hidden" aria-labelledby="headingThree">
                   <div class="card-body">
                     <ol>
                       <li>Press the&nbsp;Settings&nbsp;(with your remote pointed towards your device).</li>
@@ -1849,12 +1907,12 @@
               <div class="card">
                 <div class="card-header" id="headingFour">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                       To pair your remote to your speakers using make and model
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#xumoTroubleshooting">
+                <div id="collapseFour" class="hidden" aria-labelledby="headingFour">
                   <div class="card-body">
                     <ol>
                       <li>Press the&nbsp;Settings&nbsp;(with your remote pointed towards your device).</li>
@@ -1870,12 +1928,12 @@
               <div class="card">
                 <div class="card-header" id="headingFive">
                   <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-collapse-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                       To unpair your remote from your TV
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#xumoTroubleshooting">
+                <div id="collapseFive" class="hidden" aria-labelledby="headingFive">
                   <div class="card-body">
                     <ol>
                       <li>
@@ -1893,7 +1951,7 @@
           </div>
         </div>
 
-        <div id="1060BC2_1060BC3">
+        <div id="1060BC2_1060BC3" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”1060BC21060BC3” href="https://www.spectrum.net/support/remote/1060bc21060bc3">(click for more instructions)<br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/sup_1060-1449170275.jpg" /></a>
@@ -1938,7 +1996,7 @@
 
         </div>
 
-        <div id="RC122">
+        <div id="RC122" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”RC122” href="https://www.spectrum.net/support/remote/philips-rc122">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/sup_remote_philips_rc122_lg.png" /></a>
@@ -1985,7 +2043,7 @@
           </div>
         </div>
 
-        <div id="UR3-SR3M_UR3-SR3S">
+        <div id="UR3-SR3M_UR3-SR3S" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”UR3-SR3M_UR3-SR3S” href="https://www.spectrum.net/support/remote/ur3-sr3mur3-sr3s">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/sup_big_UR3-SR3.jpg" /></a>
@@ -2032,7 +2090,7 @@
           </div>
         </div>
 
-        <div id="CLIKR-5">
+        <div id="CLIKR-5" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”CLIKR-5” href="https://www.spectrum.net/support/remote/universal-clikr-5-ur5u-8780l-8790l">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/clikr5_ur5u_8780l.jpg" /></a>
@@ -2080,7 +2138,7 @@
           </div>
         </div>
 
-        <div id="UR2DTATWC2Remote">
+        <div id="UR2DTATWC2Remote" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”UR2DTATWC2” href="https://www.spectrum.net/support/remote/ur2-dta-twc2">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/2020-07/sup_img-card_ur2-dta-twc2_0-vertical.png" /></a>
@@ -2117,7 +2175,7 @@
           </div>
         </div>
 
-        <div id="DTAHDAIR2Remote">
+        <div id="DTAHDAIR2Remote" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink " target=”DTAHDAIR2” href="https://www.spectrum.net/support/remote/dta-hda-ir2">(click for more instructions)<br /><br />
               <img class="remoteMainImg dtaThumbnailFix" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/2018-08/sup_action-tile_cisco-dta-remote.png" /></a>
@@ -2158,7 +2216,7 @@
           </div>
         </div>
 
-        <div id="DTAHDARF22Remote">
+        <div id="DTAHDARF22Remote" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”DTAHDARF22” href="https://www.spectrum.net/support/remote/dta-hda-rf22">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/sup_DTARemote.jpg" /></a>
@@ -2193,7 +2251,7 @@
           </div>
         </div>
 
-        <div id="URC2069Remote">
+        <div id="URC2069Remote" class="hidden">
           <div class="remoteMain">
             <a class="remoteMainLink" target=”URC2069” href="https://www.spectrum.net/support/remote/urc-20682069">(click for more instructions)<br /><br />
               <img class="remoteMainImg" src="https://d15yx0mnc9teae.cloudfront.net/sites/default/files/2020-07/sup_img-card_remote-urc-2069-vertical.png" /></a>
@@ -2254,7 +2312,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#ehhBody">
+          <a aria-expanded="false" data-collapse-target="#ehhBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -2263,7 +2321,7 @@
 
       </div>
 
-      <div id="ehhBody" class="collapse show">
+      <div id="ehhBody" class="hidden">
         <table id="ehhArticle">
           <thead>
             <th>ISSUE</th>
@@ -2325,7 +2383,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#copilotBody">
+          <a aria-expanded="false" data-collapse-target="#copilotBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -2334,7 +2392,7 @@
 
       </div>
 
-      <div id="copilotBody" class="collapse show">
+      <div id="copilotBody" class="hidden">
         <ul>
           <li><a href="https://charterukm.custhelp.com/app/home" target="_blank">CoPilot Home</a></li>
           <li><a href="https://charterukm.custhelp.com/app/answers/answer_view/a_id/1011806" target="_blank">Scope of Support for Residential Queues</a> (GEN6675)</li>
@@ -2374,7 +2432,7 @@
         </div>
 
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#thirdPartyBody">
+          <a aria-expanded="false" data-collapse-target="#thirdPartyBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -2383,7 +2441,7 @@
 
       </div>
 
-      <div id="thirdPartyBody" class="collapse show ">
+      <div id="thirdPartyBody" class="hidden ">
         <a href="https://charterukm.custhelp.com/app/answers/answer_view/a_id/1010828"> GEN6296 Contact Information for Third Party and Equipment Manufacturers</a>
         <input type="text" id="thirdPartySearch" class="my-3" placeholder="Search..">
         <div class="thirdPartyTableWrapper">
@@ -4909,7 +4967,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#transfersBody">
+          <a aria-expanded="false" data-collapse-target="#transfersBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -4917,7 +4975,7 @@
         </div>
 
       </div>
-      <div id="transfersBody" class="collapse show">
+      <div id="transfersBody" class="hidden">
         <input type="text" id="transferInput" placeholder="Filter..."><br /><br />
         <table>
           <tbody>
@@ -5078,7 +5136,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#phoneNumbersBody">
+          <a aria-expanded="false" data-collapse-target="#phoneNumbersBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -5087,7 +5145,7 @@
 
       </div>
 
-      <div id="phoneNumbersBody" class="collapse show">
+      <div id="phoneNumbersBody" class="hidden">
         <p class='px-4'>
           <strong>
             Lead Line Escalations & Proactive Maintenance are Warm Transfers. All others are cold.
@@ -5202,7 +5260,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#troubleshooterBody">
+          <a aria-expanded="false" data-collapse-target="#troubleshooterBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -5211,7 +5269,7 @@
 
       </div>
 
-      <div id="troubleshooterBody" class="collapse show">
+      <div id="troubleshooterBody" class="hidden">
         <input type="text" id="tsInput" placeholder="Search for sub-topics...">
 
         <div id="tsResultHead" class="alert"></div>
@@ -5264,7 +5322,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#odnControlBody">
+          <a aria-expanded="false" data-collapse-target="#odnControlBody">
 
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
@@ -5275,7 +5333,7 @@
 
       </div>
 
-      <div id="odnControlBody" class="collapse show">
+      <div id="odnControlBody" class="hidden">
         <div class="pl-3">
           <p class=""><strong>Please select region and enter ODN IP address to generate link</strong></p>
           <form class="" id="ipForm">
@@ -5321,7 +5379,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#xumoSimBody">
+          <a aria-expanded="false" data-collapse-target="#xumoSimBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -5330,7 +5388,7 @@
 
       </div>
 
-      <div id="xumoSimBody" class="collapse show m-3 ">
+      <div id="xumoSimBody" class="hidden m-3 ">
 
         <!-- Button trigger modal -->
         <button type="button" class="m-2  btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -5368,7 +5426,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#codesBody">
+          <a aria-expanded="false" data-collapse-target="#codesBody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -5376,7 +5434,7 @@
         </div>
 
       </div>
-      <div id="codesBody" class="collapse show">
+      <div id="codesBody" class="hidden">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#sppTab" role="tab" aria-controls="profile" aria-selected="true">SPP</a>
@@ -5682,7 +5740,7 @@
           </h3>
         </div>
         <div>
-          <a aria-expanded="true" data-toggle="collapse" data-target="#SLABody">
+          <a aria-expanded="false" data-collapse-target="#SLABody">
             <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
             <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);" /></i>
           </a>
@@ -5690,7 +5748,7 @@
         </div>
 
       </div>
-      <div id="SLABody" class="collapse show">
+      <div id="SLABody" class="hidden">
 
         <br>
 
@@ -5735,14 +5793,14 @@
       <!-- Widget Header -->
       <div class="widget-header d-flex justify-content-between align-items-center">
         <h3>SLA for ETD</h3>
-        <a aria-expanded="true" data-toggle="collapse" data-target="#SLADivBody">
+        <a aria-expanded="false" data-collapse-target="#SLADivBody">
           <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
           <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
         </a>
       </div>
 
       <!-- Widget Body -->
-      <div id="SLADivBody" class="collapse show">
+      <div id="SLADivBody" class="hidden">
         <!-- Widget content goes here -->
         <div class="widget-content mt-3">
 
@@ -5805,14 +5863,14 @@
       <!-- Widget Header -->
       <div class="widget-header d-flex justify-content-between align-items-center">
         <h3>Balancing</h3>
-        <a aria-expanded="true" data-toggle="collapse" data-target="#BalancingDivBody">
+        <a aria-expanded="false" data-collapse-target="#BalancingDivBody">
           <i class="fas fa-minus fa-lg" style="color: var(--primary-blue);"></i>
           <i class="fas fa-plus fa-lg" style="color: var(--primary-blue);"></i>
         </a>
       </div>
 
       <!-- Widget Body -->
-      <div id="BalancingDivBody" class="collapse show">
+      <div id="BalancingDivBody" class="hidden">
         <!-- Widget content goes here -->
         <div class="widget-content my-3">
 
