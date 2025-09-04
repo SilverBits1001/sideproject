@@ -208,6 +208,11 @@
       min-height: 500px;
     }
 
+    /* Hide all remote detail panels by default to prevent flash before JS hides them */
+    #remoteDetail > div {
+      display: none;
+    }
+
     .remoteMain {
       /*float: left;*/
       float: right;
